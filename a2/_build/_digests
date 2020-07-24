@@ -1,0 +1,5 @@
+"Rule: ocaml: d.cmo* -> d.byte (%=part1 )": "!\181?\015\001/X\159\252\244\205\191\181\002\139\254"
+"Rule: ocaml: ml -> d.cmo & cmi (%=part1 )": "\174\188\163\\kx\172\213\227\024\249\169KD\020\172"
+"Rule: ocaml: ml -> cmo & cmi (%=part1 )": "\157\244\005\182\181C\"{\014n\218\140wi\191f"
+"Rule: ocaml dependencies ml (%=part1 )": "zm\140\166\232\0035\206\245d\160\241\153\127\163\235"
+"Resource: /Users/user/Desktop/cos326/a2/part1.ml": "\196\240\208\000\208i\136\030\187\n\174\017\b\180;P"
