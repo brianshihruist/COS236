@@ -119,10 +119,20 @@ let rec drop (n:int) (l:'a list)  : 'a list =
      are all true
 *)
 (* hint: define an auxiliary function "select" *)
-type 'a less = 'a -> 'a -> bool
-let selection_sort (leq:'a less) (l:'a list) : 'a list =
-  failwith "selection_sort unimplemented"
 
+type 'a less = 'a -> 'a -> bool
+let rec selection_sort (leq:'a less) (l:'a list) : 'a list =
+  let rec select small lst =
+  match lst with
+  | [] -> (small, [])
+  | h::t ->
+    let (s, la) = if leq h small then (h, small) else (small, h) in
+    let (smallest, rm) = select s t in
+    (smallest, la::rm) in
+  match l with
+  | [] -> []
+  | h::t -> match select h t with
+            | (smallest, remaining) -> smallest::selection_sort leq remaining;;
  
 (* ASIDE:  Why does this assignment ask you to implement selection sort?
    Insertion sort is almost always preferable to selection sort,
@@ -140,7 +150,8 @@ let selection_sort (leq:'a less) (l:'a list) : 'a list =
 
 (* return list of movies sorted by gross (largest gross first) *)
 let sort_by_gross (movies : movie list) : movie list = 
-  failwith "sort_by_gross unimplemented"
+  let less (t1, s1, g1, y1) (t2, s2, g2, y2) = if g1 < g2 then true else false in
+  selection_sort less movies;;
 
 
 (* return list of movies sorted by year produced (largest year first) *)
@@ -195,6 +206,13 @@ let data5 : movie list = [
  ("Harry Potter and the Deathly Hallows Part 2","WB",381.01,2011)
 ]
 
+let data6 : movie list = [
+  ("The Hunger Games","LGF",374.32,2012);
+  ("The Lord of the Rings: The Return of the King","NL",377.85,2003);
+  ("Harry Potter and the Deathly Hallows Part 2","WB",381.01,2011);
+  ("The Dark Knight","WB",533.34,2008);
+]
+
 (* Assertion Testing *)
 
 (* Uncomment the following when you are ready to test your take routine *)
@@ -216,6 +234,9 @@ let _ = assert ( drop 10 data4 = [])
 
 (* Test average *)
 let _ = assert(average data4 = 416.63)
+
+(* Test Sort *)
+let _ = assert(sort_by_gross data4 = data6)
 
 (* Additional Testing Infrastructure *)
 
