@@ -134,6 +134,16 @@ let rec selection_sort (leq:'a less) (l:'a list) : 'a list =
   | h::t -> match select h t with
             | (smallest, remaining) -> smallest::selection_sort leq remaining;;
  
+let rec selection_sort_2 = function
+    [] -> []
+  | first::lst ->
+      let rec select_r small output = function
+          [] -> small :: selection_sort_2 output
+        | x::xs when x < small -> select_r x (small::output) xs
+        | x::xs                -> select_r small (x::output) xs
+      in
+      select_r first [] lst;;
+
 (* ASIDE:  Why does this assignment ask you to implement selection sort?
    Insertion sort is almost always preferable to selection sort,
    if you have to implement a quadratic-time sorting algorithm.
