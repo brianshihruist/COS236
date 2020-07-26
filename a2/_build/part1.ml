@@ -90,20 +90,19 @@ let prob2c : (int * int -> int) * (float -> float -> unit) * bool  =
     ( add_one, ( add_float ), true );;
 
 
-
 (*>* Problem 2d *>*)
 (* Fill in a valid function call to foo to make prob2d typecheck *)
 
-(*
+
 let prob2d =
   let rec foo bar =
     match bar with
     | (a, (b, c)) :: xs -> if a then (b + c + (foo xs)) else foo xs
     | _ -> 0
   in 
+foo [ ( true, (1,2) ); (true, (3,4)); (false, (5,6)) ];;
 
 
-*)
 
 (*************)
 (* PROBLEM 3 *)
@@ -220,11 +219,60 @@ are not:
 
 *)
 
-(*  
-let look_and_say (xs: int list) : int list = 
+(*
+l = [2; 2; 2]
 
+is
 
+[3; 2]
+
+because l is exactly "three twos." Similarly, the look-and-say sequence of
+
+l = [1; 2; 2]
+
+is
+
+[1; 1; 2; 2]
 *)
+
+type il = int list
+
+(* My implementation is the opposite .... so [2;2;2] will give [2;3] instead*)
+
+let rec insert (num: int) (lst: il): il =
+  match lst with
+  | [] -> [num; 1]
+  | hd :: cnt:: tl -> 
+    if hd = num then (hd :: (cnt+1 :: tl)) else hd::(cnt:: insert num tl)
+  | _ -> [];;
+
+let rec aux (arr: il) (acc: il): il = 
+  match arr with 
+  | [] -> acc
+  | hd :: tl -> aux tl (insert hd acc);;
+ 
+let look_and_say (xs: int list) : int list = 
+  aux xs [];;
+
+let print_list f lst =
+  let rec print_elements = function
+    | [] -> ()
+    | h::t -> f h; print_string ";"; print_elements t
+  in
+  print_string "[";
+  print_elements lst;
+  print_string "]";
+  print_string "\n"
+;;
+
+let print_int_list = print_list print_int;;
+
+print_int_list (look_and_say [2;2;2]);;
+print_int_list (look_and_say [1;2;2]);;
+
+
+(* let _ = assert (look_and_say [2;2;2] = [3; 2]);; *)
+
 
 (*************)
 (* PROBLEM 5 *)
@@ -238,11 +286,24 @@ let look_and_say (xs: int list) : int list =
  * flatten [[]; ['e';'d']; ['a';'b';'c']] = ['e';'d';'a';'b';'c'] 
  *)
 
-(*
+
+let rec combine_array (first:'a list) (acc:'a list): 'a list = 
+  match first with
+  | [] -> acc
+  | hd::tl -> hd::(combine_array tl acc);;
+
 let rec flatten (xss:'a list list) : 'a list =
+  let rec aux (arr:'a list list) (acc:'a list) =
+    match arr with
+    | [] -> acc
+    | hd::tl -> combine_array hd (aux tl acc)
+    in
+  aux xss [];;
+
+print_int_list (flatten [[1;2];[3;4];[5;6]]);;
 
 
-*)
+
   
 (*************************************)
 (* PROBLEM 6 -- Warning: Challenging!*)
