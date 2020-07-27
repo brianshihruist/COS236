@@ -1,3 +1,5 @@
-# COS236
+# COS326
 
-# https://www.cs.princeton.edu/courses/archive/fall19/cos326/assignments.php
+## Self-learning FP with Ocaml by taking Princeton's Functional Programming course.
+
+###### https://www.cs.princeton.edu/courses/archive/fall19/cos326/assignments.php

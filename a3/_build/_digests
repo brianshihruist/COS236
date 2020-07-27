@@ -1,0 +1,5 @@
+"Resource: /Users/user/Desktop/cos326/a3/mapreduce.ml": "U\227\199\249:r\190\014\161\184x\019Gc\196f"
+"Rule: ocaml: d.cmo* -> d.byte (%=mapreduce )": "h\152\016!\203\162\012\202\198\017\233q\146\017\014 "
+"Rule: ocaml dependencies ml (%=mapreduce )": "\183~\238\192K\191\012\208\174\157*;MMW\191"
+"Rule: ocaml: ml -> d.cmo & cmi (%=mapreduce )": "\187Y\250\1971ah\005\170Z\234c\183\227\016\242"
+"Rule: ocaml: ml -> cmo & cmi (%=mapreduce )": "\003\242\239\170\212\245\239\182q/q\128)\209\249D"
