@@ -1,1 +1,1 @@
-mapreduce.ml: List
+mapreduce.ml: List String

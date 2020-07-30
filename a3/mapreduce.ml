@@ -17,6 +17,21 @@ Comments/Problems/Thoughts on this part of the assignment:
  * http://caml.inria.fr/pub/docs/manual-ocaml/libref/List.html
  *)
 
+ let print_list f lst =
+  let rec print_elements = function
+    | [] -> ()
+    | h::t -> f h; print_string ";"; print_elements t
+  in
+  print_string "[";
+  print_elements lst;
+  print_string "]";
+  print_string "\n"
+;;
+
+let print_int_list = print_list print_int;;
+let print_string_list = print_list print_string;;
+
+
 let map : ('a -> 'b) -> 'a list -> 'b list = List.map
 
 let filter : ('a -> bool) -> 'a list -> 'a list = List.filter
@@ -152,7 +167,24 @@ let _ = assert (super_sum [[1;2;3];[];[5]] = 11)
  *)
 
 let consec_dedupe (eq:'a -> 'a -> bool) (xs:'a list) : 'a list =
-  failwith "Not implemented"
+  let remove_dup first lst = foldr (fun ele (curr_num, curr_list) -> 
+                            if eq curr_num ele
+                              then (curr_num, curr_list)
+                              else (ele, ele::curr_list))
+                              lst
+                              (first, [])
+                             in
+  match xs with
+  | [] -> []
+  | h::t -> let (a,b) =  remove_dup h (h::t) in b;;
+
+let nocase_eq (s1:string) (s2:string) : bool = (String.uppercase_ascii s1) = (String.uppercase_ascii s2) 
+(* let _ = print_string_list (consec_dedupe nocase_eq ["hi"; "HI"; "bi"]);; *)
+let _ = assert (consec_dedupe nocase_eq ["hi"; "HI"; "bi"] = ["HI"; "bi"])
+(* let _ = print_int_list (consec_dedupe (=) [1;2;2;3;4;2;2;4;4]);; *)
+
+let _ = assert (consec_dedupe (=) [1;2;2;3;4;2;2;4;4] = [1;2;3;4;2;4])
+
 
 
 (*>* Problem 1.2.b *>*)
@@ -166,7 +198,21 @@ let consec_dedupe (eq:'a -> 'a -> bool) (xs:'a list) : 'a list =
 *)
 
 let prefixes (xs: 'a list) : 'a list list =
-  failwith "Not implemented"
+  let take_helper n lst = foldl 
+    (fun (count, arr) ele -> if count >= n then (count+1, arr) else (count+1, ele::arr))
+    (0, []) lst in
+    
+  let number_seq lst = foldl 
+    ( fun (n, arr) ele -> (n+1, n+1::arr)) (0, []) lst  in
+
+    let map_seq listy = let (a,b) = (number_seq listy) in b in
+
+    let take n lst = let (a,b) = take_helper n lst in a in
+
+    map (fun a -> take a xs) (map_seq xs);;
+
+
+
 
 
 
