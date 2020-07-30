@@ -1,22 +1,10 @@
 ### Starting build.
-# Target: expression.ml.depends, tags: { extension:ml, file:expression.ml, ocaml, ocamldep, quiet }
-/Users/user/.opam/4.10.0/bin/ocamldep.opt -modules expression.ml > expression.ml.depends
-# Target: ast.ml.depends, tags: { extension:ml, file:ast.ml, ocaml, ocamldep, quiet }
-/Users/user/.opam/4.10.0/bin/ocamldep.opt -modules ast.ml > ast.ml.depends # cached
-# Target: ast.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:ast.cmo, file:ast.ml, implem, ocaml, quiet }
-/Users/user/.opam/4.10.0/bin/ocamlc.opt -c -o ast.cmo ast.ml # cached
-# Target: expressionLibrary.ml.depends, tags: { extension:ml, file:expressionLibrary.ml, ocaml, ocamldep, quiet }
-/Users/user/.opam/4.10.0/bin/ocamldep.opt -modules expressionLibrary.ml > expressionLibrary.ml.depends # cached
-# Target: expressionLibrary.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:expressionLibrary.cmo, file:expressionLibrary.ml, implem, ocaml, quiet }
-/Users/user/.opam/4.10.0/bin/ocamlc.opt -c -o expressionLibrary.cmo expressionLibrary.ml # cached
-# Target: expression.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:expression.cmo, file:expression.ml, implem, ocaml, quiet }
-/Users/user/.opam/4.10.0/bin/ocamlc.opt -c -o expression.cmo expression.ml
-# Target: expression.d.cmo, tags: { byte, compile, debug, extension:cmo, extension:ml, file:expression.d.cmo, file:expression.ml, implem, ocaml, quiet }
-/Users/user/.opam/4.10.0/bin/ocamlc.opt -c -g -o expression.d.cmo expression.ml
-# Target: ast.d.cmo, tags: { byte, compile, debug, extension:cmo, extension:ml, file:ast.d.cmo, file:ast.ml, implem, ocaml, quiet }
-/Users/user/.opam/4.10.0/bin/ocamlc.opt -c -g -o ast.d.cmo ast.ml # cached
-# Target: expressionLibrary.d.cmo, tags: { byte, compile, debug, extension:cmo, extension:ml, file:expressionLibrary.d.cmo, file:expressionLibrary.ml, implem, ocaml, quiet }
-/Users/user/.opam/4.10.0/bin/ocamlc.opt -c -g -o expressionLibrary.d.cmo expressionLibrary.ml # cached
-# Target: expression.d.byte, tags: { byte, debug, dont_link_with, extension:byte, file:expression.d.byte, link, ocaml, program, quiet }
-/Users/user/.opam/4.10.0/bin/ocamlc.opt -g ast.d.cmo expressionLibrary.d.cmo expression.d.cmo -o expression.d.byte
+# Target: mapreduce.ml.depends, tags: { extension:ml, file:mapreduce.ml, ocaml, ocamldep, quiet }
+/Users/user/.opam/4.10.0/bin/ocamldep.opt -modules mapreduce.ml > mapreduce.ml.depends
+# Target: mapreduce.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:mapreduce.cmo, file:mapreduce.ml, implem, ocaml, quiet }
+/Users/user/.opam/4.10.0/bin/ocamlc.opt -c -o mapreduce.cmo mapreduce.ml
+# Target: mapreduce.d.cmo, tags: { byte, compile, debug, extension:cmo, extension:ml, file:mapreduce.d.cmo, file:mapreduce.ml, implem, ocaml, quiet }
+/Users/user/.opam/4.10.0/bin/ocamlc.opt -c -g -o mapreduce.d.cmo mapreduce.ml
+# Target: mapreduce.d.byte, tags: { byte, debug, dont_link_with, extension:byte, file:mapreduce.d.byte, link, ocaml, program, quiet }
+/Users/user/.opam/4.10.0/bin/ocamlc.opt -g mapreduce.d.cmo -o mapreduce.d.byte
 # Compilation successful.

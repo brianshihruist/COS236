@@ -197,7 +197,7 @@ let _ = assert (consec_dedupe (=) [1;2;2;3;4;2;2;4;4] = [1;2;3;4;2;4])
  * There are no non-empty prefixes of an empty list.
 *)
 
-let prefixes (xs: 'a list) : 'a list list =
+(* let prefixes (xs: 'a list) : 'a list list =
   let take_helper n lst = foldl 
     (fun (count, arr) ele -> if count >= n then (count+1, arr) else (count+1, ele::arr))
     (0, []) lst in
@@ -209,7 +209,7 @@ let prefixes (xs: 'a list) : 'a list list =
 
     let take n lst = let (a,b) = take_helper n lst in a in
 
-    map (fun a -> take a xs) (map_seq xs);;
+    map (fun a -> take a xs) (map_seq xs);; *)
 
 
 
@@ -228,5 +228,9 @@ let prefixes (xs: 'a list) : 'a list list =
  *)
 
 let flatten (xss:'a list list) : 'a list =
-  failwith "Not implemented"
+  let combine_two_lists (first:'a list ) (second:'a list ) =
+    foldl (fun acc ele -> ele::acc) first second in
+  List.rev (foldl (fun acc lst -> combine_two_lists acc lst) [] xss);;
 
+
+let _ = print_int_list (flatten [[1;2;2;];[3;4;2;];[2;4;4]]);;
